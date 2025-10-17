@@ -4,20 +4,21 @@
  * Bootstraps Vuetify and other plugins then mounts the App`
  */
 
+import "@/styles/tailwind.css";
 // Plugins
-import { registerPlugins } from '@/plugins'
+import { registerPlugins } from "@/plugins";
 
 // Components
-import App from './App.vue'
-
+import App from "./App.vue";
 // Composables
-import { createApp } from 'vue'
+import { createApp } from "vue";
+import { Icon } from "@iconify/vue";
 
 // Styles
-import 'unfonts.css'
+import "unfonts.css";
 
-const app = createApp(App)
+const app = createApp(App);
 
-registerPlugins(app)
-
-app.mount('#app')
+registerPlugins(app);
+app.component("Icon", Icon);
+app.mount("#app");

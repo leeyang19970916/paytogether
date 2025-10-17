@@ -1,9 +1,9 @@
 <template>
-  <v-app>
-    <router-view />
+  <v-app class="bg-white">
+    <component :is="Default"></component>
   </v-app>
 </template>
 
 <script lang="ts" setup>
-  //
+import Default from "./layouts/Default.vue";
 </script>
