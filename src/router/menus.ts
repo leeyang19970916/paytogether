@@ -1,13 +1,13 @@
-export const routes = [
+export const menus = [
   {
-    path: "/trip",
-    name: "Trip",
+    path: "/",
+    name: "home",
     icon: "material-symbols:travel",
-    component: () => import("@/pages/trip/index.vue"),
+    component: () => import("@/pages/home/index.vue"),
   },
   {
     path: "/user",
-    name: "User",
+    name: "user",
     icon: "material-symbols:person",
     component: () => import("@/pages/user/index.vue"),
   },

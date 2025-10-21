@@ -1,13 +1,9 @@
 <template>
   <Title :title="TITLE" />
-  <div class="mt-3">
-    <Filter></Filter>
-  </div>
 </template>
 <script setup lang="ts">
 import Title from "@/components/Title/index.vue";
-import Filter from "@/components/Filter/index.vue";
-const TITLE = "成員列表";
+const TITLE = "記帳表";
 // const rules = [
 //   (value) => !!value || "Required.",
 //   (value) => (value && value.length >= 3) || "Min 3 characters",
