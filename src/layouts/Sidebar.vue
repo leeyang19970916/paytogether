@@ -1,11 +1,11 @@
 <template>
   <v-navigation-drawer permanent color="surface-variant" :width="240">
-    <v-list-item title="My Application" subtitle="Vuetify"></v-list-item>
+    <v-list-item title="分帳系統" :subtitle="date.format(new Date(),'keyboardDate')"></v-list-item>
     <v-divider></v-divider>
     <v-list-item
       v-for="(item, index) in menus"
       :key="`${item.name + index}menus`"
-      :title="item.name"
+      :title="item.title"
       :to="{ name: item.name }"
       :active="route.name === item.name"
       :prepend-icon="item.icon"
@@ -16,8 +16,10 @@
 <script lang="ts" setup>
 import { menus } from "@/router/menus";
 import { useRoute } from "vue-router";
-
+import { useDate } from 'vuetify'
 const route = useRoute();
+
+const date = useDate()
 </script>
 <style lang="scss">
 .v-list-item--active {

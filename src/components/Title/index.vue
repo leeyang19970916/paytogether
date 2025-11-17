@@ -1,10 +1,11 @@
 <template>
-  <h1 class="title">{{ title }}</h1>
+  <h1 class="title">{{ menu?.title }}</h1>
 </template>
 <script setup lang="ts">
-defineProps<{
-  title: string;
-}>();
+import { menus } from '@/router/menus'
+const router=useRouter()
+const menu=computed(()=> menus.find(itm=>itm.name===
+router.currentRoute.value.name))
 </script>
 
 <style scoped>

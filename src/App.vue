@@ -5,5 +5,5 @@
 </template>
 
 <script lang="ts" setup>
-import Default from "./layouts/Default.vue";
+import Default from "./layouts/default.vue";
 </script>

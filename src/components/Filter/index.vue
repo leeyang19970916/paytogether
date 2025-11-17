@@ -1,12 +1,13 @@
 <template>
-  <!-- <v-responsive class="flex"> -->
+  <div class="flex gap-4">
   <v-text-field
-    max-width="344"
+    width="344"
     clearable
     label="關鍵字"
     variant="outlined"
+    density="compact"
   ></v-text-field>
-  <v-btn prepend-icon="$vuetify" variant="tonal"> 搜尋 </v-btn>
-  <!-- </v-responsive> -->
+  <v-btn prepend-icon="mdi-magnify" variant="tonal" @click="()=>{console.log('Search')}"> 搜尋 </v-btn>
+  </div>
 </template>
 <script lang="ts" setup></script>

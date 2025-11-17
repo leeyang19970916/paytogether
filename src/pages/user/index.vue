@@ -1,16 +1,22 @@
 <template>
   <Title :title="TITLE" />
-  <div class="mt-3">
+  <div class="my-5 flex justify-between">
     <Filter></Filter>
+    <v-btn prepend-icon="$vuetify"> 新建角色 </v-btn>
   </div>
+  <Dialog></Dialog>
 </template>
 <script setup lang="ts">
-import Title from "@/components/Title/index.vue";
-import Filter from "@/components/Filter/index.vue";
+import Title from "@/components/Title";
+import Filter from "@/components/Filter";
+import Dialog from "./components/Dialog";
+// Table
+// import Table from "./component/Table.vue";
+// Table
 const TITLE = "成員列表";
 // const rules = [
 //   (value) => !!value || "Required.",
-//   (value) => (value && value.length >= 3) || "Min 3 characters",
+//   (value) => (value && value.length >= 3) || "Min 3 characters",ㄝ
 // ];
 type User = {
   id: string;
