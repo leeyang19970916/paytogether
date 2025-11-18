@@ -2,30 +2,47 @@
   <div class="pa-4 text-center">
     <v-dialog v-model="model" max-width="600">
       <v-card prepend-icon="mdi-account" :title>
-        <v-card-text>
-          <v-row dense>
-            <v-col cols="12" md="4" sm="6">
-              <v-text-field label="name" required></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row dense>
+        <div class="py-3 px-6 flex gap-5 flex-col">
+          <!-- 可以做成一個套件 塞顏色跟文字 -->
+          <div
+            class="flex justify-center items-center rounded-[50px] border bg-red-600 w-[100px] h-[100px] text-[20px] mx-auto overflow-hidden"
+          >
+            {{ nickNameText }}
+          </div>
+          <div class="flex-col">
             <v-switch
               v-model="user.isPin"
-              :label="`Switch: ${user.isPin.toString()}`"
+              color="red"
+              :label="user.isPin ? '釘選' : '未釘選'"
               hide-details
-              inset
             ></v-switch>
-          </v-row>
-          <v-row dense>
-            <v-textarea
-              class="mb-2"
-              rows="2"
-              variant="outlined"
-              persistent-counter
-            ></v-textarea>
-          </v-row>
-        </v-card-text>
+            <div class="flex gap-5">
+              <v-text-field
+                v-model="user.name"
+                class="max-w-[200px]"
+                clearable
+                label="Name:"
+                variant="outlined"
+                density="compact"
+                :rules="[]"
+              ></v-text-field>
 
+              <v-text-field
+                v-model="user.nickName"
+                class="max-w-[170px]"
+                clearable
+                label="暱稱:"
+                variant="outlined"
+                density="compact"
+              ></v-text-field>
+            </div>
+            <v-textarea
+              autocomplete=""
+              label="備註:"
+              v-model="user.note"
+            ></v-textarea>
+          </div>
+        </div>
         <v-divider></v-divider>
 
         <v-card-actions>
@@ -37,7 +54,11 @@
             color="primary"
             text="Save"
             variant="tonal"
-            @click="model = false"
+            @click="
+              () => {
+                model = false;
+              }
+            "
           ></v-btn>
         </v-card-actions>
       </v-card>
@@ -54,15 +75,24 @@ const props = defineProps<{
   mode: Mode;
 }>();
 
-const title = computed(() => {
-  return `${MODE_TEXT[props.mode]}角色`;
+const title = computed(() => `${MODE_TEXT[props.mode]} 角色`);
+const nickNameText = computed(() => {
+  if (user.value.nickName) return user.value.nickName;
+  if (user.value.name) {
+    return `${user.value.name[0]}`;
+  }
+  return "預設";
 });
-const user = ref<User>({
+const initUser: User = {
   isPin: false,
   id: "",
+  nickName: "",
   name: "",
   updateTime: "",
-  note: "",
-  avatar_url: "", //頭像，直接路徑就可以了
-});
+  note: "測試",
+  color: "",
+  //頭像，直接路徑就可以了
+};
+const user = ref<User>(structuredClone(initUser));
 </script>
+<style lang="scss" scoped></style>
