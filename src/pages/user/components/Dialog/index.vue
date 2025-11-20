@@ -103,7 +103,7 @@ const initUser: User = {
   nickName: "",
   name: "",
   updateTime: dayjs().format("YYYY-MM-DD"),
-  note: "測試",
+  note: "",
   color: BLACK_COLOR,
   //頭像，直接路徑就可以了
 };
