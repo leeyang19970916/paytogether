@@ -1,6 +1,9 @@
 <template>
   <v-navigation-drawer permanent color="surface-variant" :width="240">
-    <v-list-item title="分帳系統" :subtitle="date.format(new Date(),'keyboardDate')"></v-list-item>
+    <v-list-item
+      title="分帳系統"
+      :subtitle="dayjs().format('YYYY-MM-DD')"
+    ></v-list-item>
     <v-divider></v-divider>
     <v-list-item
       v-for="(item, index) in menus"
@@ -15,11 +18,10 @@
 </template>
 <script lang="ts" setup>
 import { menus } from "@/router/menus";
+import dayjs from "dayjs";
 import { useRoute } from "vue-router";
-import { useDate } from 'vuetify'
+import { useDate } from "vuetify";
 const route = useRoute();
-
-const date = useDate()
 </script>
 <style lang="scss">
 .v-list-item--active {

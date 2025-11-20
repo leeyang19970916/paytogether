@@ -2,17 +2,18 @@
   <div class="pa-4 text-center">
     <v-dialog v-model="model" max-width="600">
       <v-card prepend-icon="mdi-account" :title>
-        <div class="py-3 px-6 flex gap-5 flex-col">
+        <div class="py-3 px-6 flex gap-1 flex-col">
           <!-- 可以做成一個套件 塞顏色跟文字 -->
           <div
-            class="flex justify-center items-center rounded-[50px] border bg-red-600 w-[100px] h-[100px] text-[20px] mx-auto overflow-hidden"
+            class="flex justify-center items-center rounded-circle border w-[150px] h-[150px] text-[20px] mx-auto overflow-hidden"
+            :style="{ backgroundColor: user.color }"
           >
             {{ nickNameText }}
           </div>
           <div class="flex-col">
             <v-switch
               v-model="user.isPin"
-              color="red"
+              :color="user.color"
               :label="user.isPin ? '釘選' : '未釘選'"
               hide-details
             ></v-switch>
@@ -35,14 +36,26 @@
                 variant="outlined"
                 density="compact"
               ></v-text-field>
+              <v-text-field
+                type="color"
+                v-model="user.color"
+                class="max-w-[100px]"
+                label="Color:"
+                variant="outlined"
+                density="compact"
+              ></v-text-field>
             </div>
             <v-textarea
-              autocomplete=""
               label="備註:"
               v-model="user.note"
+              hide-details
             ></v-textarea>
           </div>
+          <div class="text-gray-300 text-sm mt-1">
+            最後更新日期: {{ user.updateTime }}
+          </div>
         </div>
+
         <v-divider></v-divider>
 
         <v-card-actions>
@@ -68,14 +81,15 @@
 <script setup lang="ts">
 import type { User } from "@/types/user";
 import type { Mode } from "@/types";
-import { MODE_TEXT } from "@/constants";
+import { BLACK_COLOR, MODE_TEXT } from "@/constants";
+import dayjs from "dayjs";
 
 const model = defineModel({ default: false });
 const props = defineProps<{
   mode: Mode;
 }>();
 
-const title = computed(() => `${MODE_TEXT[props.mode]} 角色`);
+const title = computed(() => `${MODE_TEXT[props.mode]}角色`);
 const nickNameText = computed(() => {
   if (user.value.nickName) return user.value.nickName;
   if (user.value.name) {
@@ -88,11 +102,20 @@ const initUser: User = {
   id: "",
   nickName: "",
   name: "",
-  updateTime: "",
+  updateTime: dayjs().format("YYYY-MM-DD"),
   note: "測試",
-  color: "",
+  color: BLACK_COLOR,
   //頭像，直接路徑就可以了
 };
 const user = ref<User>(structuredClone(initUser));
+
+watch(
+  () => user.value.color,
+  (val) => {
+    if (!val) {
+      user.value.color = initUser.color;
+    }
+  }
+);
 </script>
 <style lang="scss" scoped></style>
