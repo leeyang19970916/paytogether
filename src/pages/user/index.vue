@@ -8,6 +8,7 @@
         () => {
           dialog.isShow = true;
           dialog.mode = 'create';
+          dialog.user = undefined;
         }
       "
     >
@@ -15,21 +16,43 @@
     </v-btn>
   </div>
   <div class="grid grid-cols-4 gap-5">
-    <!-- {{ mock_users.map(i=>{return  (<Card class="col-span-2" ...i></Card>)} ) }} -->
     <Card class="col-span-2"></Card>
-    <Card :key="`user-${user.id}`" v-for="user in mock_users" :user></Card>
+    <Card
+      :key="`user-${user.id}`"
+      v-for="user in mock_users"
+      :user
+      @showDialog="
+        (user:User) => {
+          dialog.isShow=true
+          dialog.mode='edit'
+          dialog.user=user
+        }
+      "
+    ></Card>
   </div>
 
-  <Dialog v-model="dialog.isShow" :mode="dialog.mode"></Dialog>
+  <Dialog
+    v-model="dialog.isShow"
+    :mode="dialog.mode"
+    :user="dialog.user"
+  ></Dialog>
 </template>
 <script setup lang="ts">
+import type { User } from "@/types/user";
+import type { Mode } from "@/types";
 import Title from "@/components/Title";
 import Filter from "@/components/Filter";
 import Dialog from "./components/Dialog";
 import Card from "./components/Card";
 import { mock_users } from "@/mock";
+// import dayjs from "dayjs";
+// import { BLACK_COLOR } from "@/constants";
 
 const TITLE = "成員列表";
-const dialog = ref({ isShow: false, mode: "view" });
+const dialog = ref<{ isShow: boolean; mode: Mode; user?: User }>({
+  isShow: false,
+  mode: "view",
+  user: undefined,
+});
 // const
 </script>

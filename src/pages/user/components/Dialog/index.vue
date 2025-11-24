@@ -4,12 +4,7 @@
       <v-card prepend-icon="mdi-account" :title>
         <div class="py-3 px-6 flex gap-1 flex-col">
           <!-- 可以做成一個套件 塞顏色跟文字 -->
-          <div
-            class="flex justify-center items-center rounded-circle border w-[150px] h-[150px] text-[20px] mx-auto overflow-hidden"
-            :style="{ backgroundColor: user.color }"
-          >
-            {{ nickNameText }}
-          </div>
+          <Avatar :color="user.color" :text="nickNameText" />
           <div class="flex-col">
             <v-switch
               v-model="user.isPin"
@@ -83,20 +78,7 @@ import type { User } from "@/types/user";
 import type { Mode } from "@/types";
 import { BLACK_COLOR, MODE_TEXT } from "@/constants";
 import dayjs from "dayjs";
-
-const model = defineModel({ default: false });
-const props = defineProps<{
-  mode: Mode;
-}>();
-
-const title = computed(() => `${MODE_TEXT[props.mode]}角色`);
-const nickNameText = computed(() => {
-  if (user.value.nickName) return user.value.nickName;
-  if (user.value.name) {
-    return `${user.value.name[0]}`;
-  }
-  return "預設";
-});
+import Avatar from "@/components/Avatar";
 const initUser: User = {
   isPin: false,
   id: "",
@@ -107,15 +89,40 @@ const initUser: User = {
   color: BLACK_COLOR,
   //頭像，直接路徑就可以了
 };
-const user = ref<User>(structuredClone(initUser));
 
+const model = defineModel({ default: false });
+const props = defineProps<{
+  mode: Mode;
+  user?: User;
+}>();
+
+const title = computed(() => `${MODE_TEXT[props.mode]}角色`);
+const nickNameText = computed(() => {
+  if (user.value) {
+    if (user.value.nickName) return user.value.nickName;
+    if (user.value.name) {
+      return `${user.value.name[0]}`;
+    }
+  }
+  return "預設";
+});
+
+const user = ref<User>();
 watch(
-  () => user.value.color,
+  () => props.user,
   (val) => {
-    if (!val) {
-      user.value.color = initUser.color;
+    if (val) {
+      user.value = val;
     }
   }
 );
+// watch(
+//   () => user.value?.color,
+//   (val) => {
+//     if (!val) {
+//       user.value.color = initUser.color;
+//     }
+//   }
+// );
 </script>
 <style lang="scss" scoped></style>
