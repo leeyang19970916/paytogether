@@ -3,11 +3,16 @@
     v-if="user"
     elevation="1"
     hover
-    class="!rounded-lg h-[180px] !flex !flex-col !justify-center !gap-5 !items-center"
-    :class="{ '': user.isPin }"
+    class="relative !rounded-lg h-[180px] !flex !flex-col !justify-center !gap-5 !items-center"
     link
     @click="emits('showDialog', user)"
   >
+    <div
+      v-if="user.isPin"
+      class="absolute top-2 right-2 bg-emerald-200 text-indigo-800 !p-[1px_5px] rounded-2xl"
+    >
+      釘選
+    </div>
     <Avatar
       :color="user.color"
       :text="user.nickName"

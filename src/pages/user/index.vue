@@ -2,16 +2,7 @@
   <Title :title="TITLE" />
   <div class="my-5 flex justify-between">
     <Filter></Filter>
-    <v-btn
-      prepend-icon="$vuetify"
-      @Click="
-        () => {
-          dialog.isShow = true;
-          dialog.mode = 'create';
-          dialog.user = undefined;
-        }
-      "
-    >
+    <v-btn prepend-icon="$vuetify" @click="() => dialogHandler('create')">
       新建角色
     </v-btn>
   </div>
@@ -21,20 +12,23 @@
       :key="`user-${user.id}`"
       v-for="user in mock_users"
       :user
-      @showDialog="
-        (user:User) => {
-          dialog.isShow=true
-          dialog.mode='edit'
-          dialog.user=user
-        }
+      @showDialog="(user:User)=>dialogHandler('view',user)
+
       "
     ></Card>
   </div>
-
+  {{ dialog }}
   <Dialog
     v-model="dialog.isShow"
     :mode="dialog.mode"
     :user="dialog.user"
+    @changeMode="(mode:Mode)=>{
+      if (mode==='edit') {
+        dialog.mode='view'
+      }else{
+        dialog.mode='edit'
+      }
+    }"
   ></Dialog>
 </template>
 <script setup lang="ts">
@@ -45,8 +39,6 @@ import Filter from "@/components/Filter";
 import Dialog from "./components/Dialog";
 import Card from "./components/Card";
 import { mock_users } from "@/mock";
-// import dayjs from "dayjs";
-// import { BLACK_COLOR } from "@/constants";
 
 const TITLE = "成員列表";
 const dialog = ref<{ isShow: boolean; mode: Mode; user?: User }>({
@@ -54,5 +46,9 @@ const dialog = ref<{ isShow: boolean; mode: Mode; user?: User }>({
   mode: "view",
   user: undefined,
 });
-// const
+const dialogHandler = (mode: Mode, user?: User) => {
+  dialog.value.isShow = true;
+  dialog.value.mode = mode;
+  dialog.value.user = user;
+};
 </script>
