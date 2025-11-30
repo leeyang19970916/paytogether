@@ -2,7 +2,6 @@
   <v-dialog v-model="model" max-width="600">
     <v-card v-if="user" prepend-icon="mdi-account" :title>
       <div class="py-3 px-6 flex gap-1 flex-col">
-        {{ user }}
         <!-- 可以做成一個套件 塞顏色跟文字 -->
         <Avatar :color="user.color" :text="nickNameText" />
         <div class="flex-col">
@@ -62,7 +61,7 @@
         <v-btn
           v-if="mode === 'edit' || mode === 'view'"
           text="編輯模式"
-          variant="plain"
+          :variant="isView ? 'tonal' : 'outlined'"
           @click="emits('changeMode', mode)"
         ></v-btn>
         <v-spacer></v-spacer>
@@ -136,7 +135,6 @@ const isView = computed(() => props.mode === "view");
 watch(
   () => props.user,
   (val) => {
-    console.log(props.user);
     if (props.mode === "create") {
       user.value = structuredClone(initUser);
     } else {

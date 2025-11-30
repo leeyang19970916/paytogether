@@ -17,7 +17,6 @@
       "
     ></Card>
   </div>
-  {{ dialog }}
   <Dialog
     v-model="dialog.isShow"
     :mode="dialog.mode"
