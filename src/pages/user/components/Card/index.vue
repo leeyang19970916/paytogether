@@ -7,12 +7,7 @@
     link
     @click="emits('showDialog', user)"
   >
-    <div
-      v-if="user.isPin"
-      class="absolute top-2 right-2 bg-emerald-200 text-indigo-800 !p-[1px_5px] rounded-2xl"
-    >
-      釘選
-    </div>
+    <PinIcon v-if="user.isPin" />
     <Avatar
       :color="user.color"
       :text="user.nickName"
@@ -25,6 +20,7 @@
 <script setup lang="ts">
 import type { User } from "@/types/user";
 import Avatar from "@/components/Avatar";
+import PinIcon from "@/components/PinIcon";
 const props = defineProps<{
   user: User;
 }>();

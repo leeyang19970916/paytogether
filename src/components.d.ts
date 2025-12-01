@@ -11,6 +11,8 @@ declare module 'vue' {
     Avatar: typeof import('./components/Avatar/index.vue')['default']
     Dialog: typeof import('./components/Dialog/index.vue')['default']
     Filter: typeof import('./components/Filter/index.vue')['default']
+    MultiSelect: typeof import('./components/MultiSelect/index.vue')['default']
+    PinIcon: typeof import('./components/PinIcon/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Title: typeof import('./components/Title/index.vue')['default']

@@ -6,7 +6,7 @@
     ></v-list-item>
     <v-divider></v-divider>
     <v-list-item
-      v-for="(item, index) in menus"
+      v-for="(item, index) in sidebarMenus"
       :key="`${item.name + index}menus`"
       :title="item.title"
       :to="{ name: item.name }"
@@ -22,6 +22,10 @@ import dayjs from "dayjs";
 import { useRoute } from "vue-router";
 import { useDate } from "vuetify";
 const route = useRoute();
+const SIDEBAR_NAMES = ["home", "user"];
+const sidebarMenus = computed(() =>
+  menus.filter((i) => SIDEBAR_NAMES.includes(i.name))
+);
 </script>
 <style lang="scss">
 .v-list-item--active {

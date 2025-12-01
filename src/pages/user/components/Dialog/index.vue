@@ -51,7 +51,7 @@
           ></v-textarea>
         </div>
         <div class="text-gray-300 text-sm mt-1">
-          最後更新日期: {{ user.updateTime }}
+          最後更新日期: {{ user.updatedTime }}
         </div>
       </div>
 
@@ -105,7 +105,7 @@ const initUser: User = {
   id: "",
   nickName: "",
   name: "",
-  updateTime: dayjs().format("YYYY-MM-DD"),
+  updatedTime: dayjs().format("YYYY-MM-DD"),
   note: "",
   color: BLACK_COLOR,
   //頭像，直接路徑就可以了

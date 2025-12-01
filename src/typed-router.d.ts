@@ -19,6 +19,9 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/home/': RouteRecordInfo<'/home/', '/home', Record<never, never>, Record<never, never>>,
+    '/home/components/Card/': RouteRecordInfo<'/home/components/Card/', '/home/components/Card', Record<never, never>, Record<never, never>>,
+    '/home/components/Filter/': RouteRecordInfo<'/home/components/Filter/', '/home/components/Filter', Record<never, never>, Record<never, never>>,
+    '/home/project/': RouteRecordInfo<'/home/project/', '/home/project', Record<never, never>, Record<never, never>>,
     '/user/': RouteRecordInfo<'/user/', '/user', Record<never, never>, Record<never, never>>,
     '/user/components/Card/': RouteRecordInfo<'/user/components/Card/', '/user/components/Card', Record<never, never>, Record<never, never>>,
     '/user/components/Dialog/': RouteRecordInfo<'/user/components/Dialog/', '/user/components/Dialog', Record<never, never>, Record<never, never>>,
@@ -37,6 +40,18 @@ declare module 'vue-router/auto-routes' {
   export interface _RouteFileInfoMap {
     'src/pages/home/index.vue': {
       routes: '/home/'
+      views: never
+    }
+    'src/pages/home/components/Card/index.vue': {
+      routes: '/home/components/Card/'
+      views: never
+    }
+    'src/pages/home/components/Filter/index.vue': {
+      routes: '/home/components/Filter/'
+      views: never
+    }
+    'src/pages/home/project/index.vue': {
+      routes: '/home/project/'
       views: never
     }
     'src/pages/user/index.vue': {

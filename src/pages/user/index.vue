@@ -7,7 +7,6 @@
     </v-btn>
   </div>
   <div class="grid grid-cols-4 gap-5">
-    <Card class="col-span-2"></Card>
     <Card
       :key="`user-${user.id}`"
       v-for="user in mock_users"
