@@ -20,9 +20,8 @@ import Card from "./components/Card";
 import { mock_projects } from "@/mock";
 import type { User } from "@/types/user";
 const router = useRouter();
-const route = useRoute();
-console.log(route);
 const redirect = (id?: User["id"]) => {
-  console.log(id, "id");
+  const pid = id ?? "new";
+  router.push({ name: "projectDetail" as any, params: { id: pid } });
 };
 </script>

@@ -7,7 +7,7 @@ export const menus = [
     component: () => import("@/pages/home/index.vue"),
   },
   {
-    path: "/home/project/:id",
+    path: "/project/:id",
     name: "projectDetail",
     title: "專案詳細資料",
     icon: "material-symbols:travel",
@@ -21,4 +21,4 @@ export const menus = [
     icon: "material-symbols:person",
     component: () => import("@/pages/user/index.vue"),
   },
-];
+] as const;
