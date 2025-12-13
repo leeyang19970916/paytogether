@@ -7,11 +7,11 @@ export const menus = [
     component: () => import("@/pages/home/index.vue"),
   },
   {
-    path: "/project/:id",
+    path: "/projectDetail",
     name: "projectDetail",
     title: "專案詳細資料",
     icon: "material-symbols:travel",
-    component: () => import("@/pages/home/project/index.vue"),
+    component: () => import("@/pages/home/projectDetail/index.vue"),
   },
 
   {

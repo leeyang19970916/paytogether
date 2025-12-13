@@ -1,5 +1,5 @@
 <template>
-  <Title />
+  <Title v-if="menu" :title="menu.title" />
   <div class="my-5 flex justify-between">
     <Filter />
     <v-btn prepend-icon="$vuetify" @click="() => redirect()"> 新建專案 </v-btn>
@@ -18,10 +18,18 @@ import Title from "@/components/Title/index.vue";
 import Filter from "./components/Filter/index.vue";
 import Card from "./components/Card";
 import { mock_projects } from "@/mock";
-import type { User } from "@/types/user";
+import type { Project } from "@/types/project";
+import { menus } from "@/router/menus";
+
+const route = useRoute();
+const menu = computed(() => {
+  const routeName = route.name as string;
+  return menus.find((m) => m.name === routeName);
+});
 const router = useRouter();
-const redirect = (id?: User["id"]) => {
+const redirect = (id?: Project["id"]) => {
   const pid = id ?? "new";
-  router.push({ name: "projectDetail" as any, params: { id: pid } });
+  // router.push({ name: "projectDetail", params: { id: pid } });
+  router.push(`/projectDetail?id=${pid}`);
 };
 </script>

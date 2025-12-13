@@ -1,11 +1,19 @@
 <template>
-  <h1 class="title">{{ menu?.title }}</h1>
+  <h1 class="title">{{ title }}</h1>
+  <!-- {{ router.currentRoute.value.name }} -->
+  <!-- {{ route.name }} -->
 </template>
 <script setup lang="ts">
-import { menus } from '@/router/menus'
-const router=useRouter()
-const menu=computed(()=> menus.find(itm=>itm.name===
-router.currentRoute.value.name))
+// import { menus } from "@/router/menus";
+// const route = useRoute();
+// const router = useRouter();
+// const routeName = route.name as string;
+// const menu = computed(() => {
+//   return menus.find((m) => m.name === routeName)?.title;
+// });{}
+defineProps<{
+  title: string;
+}>();
 </script>
 
 <style scoped>

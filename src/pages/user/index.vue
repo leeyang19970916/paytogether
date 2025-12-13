@@ -1,5 +1,5 @@
 <template>
-  <Title :title="TITLE" />
+  <Title v-if="menu" :title="menu.title" />
   <div class="my-5 flex justify-between">
     <Filter></Filter>
     <v-btn prepend-icon="$vuetify" @click="() => dialogHandler('create')">
@@ -37,8 +37,12 @@ import Filter from "@/components/Filter";
 import Dialog from "./components/Dialog";
 import Card from "./components/Card";
 import { mock_users } from "@/mock";
-
-const TITLE = "成員列表";
+import { menus } from "@/router/menus";
+const route = useRoute();
+const menu = computed(() => {
+  const routeName = route.name as string;
+  return menus.find((m) => m.name === routeName);
+});
 const dialog = ref<{ isShow: boolean; mode: Mode; user?: User }>({
   isShow: false,
   mode: "view",

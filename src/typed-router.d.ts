@@ -21,7 +21,8 @@ declare module 'vue-router/auto-routes' {
     '/home/': RouteRecordInfo<'/home/', '/home', Record<never, never>, Record<never, never>>,
     '/home/components/Card/': RouteRecordInfo<'/home/components/Card/', '/home/components/Card', Record<never, never>, Record<never, never>>,
     '/home/components/Filter/': RouteRecordInfo<'/home/components/Filter/', '/home/components/Filter', Record<never, never>, Record<never, never>>,
-    '/home/project/': RouteRecordInfo<'/home/project/', '/home/project', Record<never, never>, Record<never, never>>,
+    '/home/projectDetail/': RouteRecordInfo<'/home/projectDetail/', '/home/projectDetail', Record<never, never>, Record<never, never>>,
+    '/home/projectDetail/components/Tabs/': RouteRecordInfo<'/home/projectDetail/components/Tabs/', '/home/projectDetail/components/Tabs', Record<never, never>, Record<never, never>>,
     '/user/': RouteRecordInfo<'/user/', '/user', Record<never, never>, Record<never, never>>,
     '/user/components/Card/': RouteRecordInfo<'/user/components/Card/', '/user/components/Card', Record<never, never>, Record<never, never>>,
     '/user/components/Dialog/': RouteRecordInfo<'/user/components/Dialog/', '/user/components/Dialog', Record<never, never>, Record<never, never>>,
@@ -50,8 +51,12 @@ declare module 'vue-router/auto-routes' {
       routes: '/home/components/Filter/'
       views: never
     }
-    'src/pages/home/project/index.vue': {
-      routes: '/home/project/'
+    'src/pages/home/projectDetail/index.vue': {
+      routes: '/home/projectDetail/'
+      views: never
+    }
+    'src/pages/home/projectDetail/components/Tabs/index.vue': {
+      routes: '/home/projectDetail/components/Tabs/'
       views: never
     }
     'src/pages/user/index.vue': {
