@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="model" max-width="600">
-    <v-card v-if="user" prepend-icon="mdi-account" :title>
+    <v-card prepend-icon="mdi-account" :title>
       <div class="py-3 px-6 flex gap-1 flex-col">
         <!-- 可以做成一個套件 塞顏色跟文字 -->
         <Avatar :color="user.color" :text="nickNameText" />
@@ -65,9 +65,7 @@
           @click="emits('changeMode', mode)"
         ></v-btn>
         <v-spacer></v-spacer>
-
         <v-btn text="Close" variant="plain" @click="model = false"></v-btn>
-
         <v-btn
           v-if="mode === 'create'"
           color="primary"
@@ -113,7 +111,7 @@ const initUser: User = {
 const model = defineModel({ default: false });
 const props = defineProps<{
   mode: Mode;
-  user?: User;
+  user: User | undefined;
 }>();
 const emits = defineEmits<{
   changeMode: [mode: Mode];
@@ -126,22 +124,14 @@ const nickNameText = computed(() => {
       return `${user.value.name[0]}`;
     }
   }
-  return "預設";
+  return "";
 });
-const user = ref<User | undefined>(props.user);
+const user = ref<User>(structuredClone(initUser));
 const isView = computed(() => props.mode === "view");
-
-// class
-watch(
-  () => props.user,
-  (val) => {
-    if (props.mode === "create") {
-      user.value = structuredClone(initUser);
-    } else {
-      user.value = val;
-    }
-  },
-  { immediate: true }
-);
+watch(model, (isShow) => {
+  if (isShow && props.user) {
+    user.value = props.user;
+  }
+});
 </script>
 <style lang="scss" scoped></style>
