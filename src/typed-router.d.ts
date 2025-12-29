@@ -20,6 +20,10 @@ declare module 'vue-router/auto-routes' {
   export interface RouteNamedMap {
     '/home/components/Card/': RouteRecordInfo<'/home/components/Card/', '/home/components/Card', Record<never, never>, Record<never, never>>,
     '/home/components/Filter/': RouteRecordInfo<'/home/components/Filter/', '/home/components/Filter', Record<never, never>, Record<never, never>>,
+    '/home/projectDetail/': RouteRecordInfo<'/home/projectDetail/', '/home/projectDetail', Record<never, never>, Record<never, never>>,
+    '/home/projectDetail/components/Checkout': RouteRecordInfo<'/home/projectDetail/components/Checkout', '/home/projectDetail/components/Checkout', Record<never, never>, Record<never, never>>,
+    '/home/projectDetail/components/Detail': RouteRecordInfo<'/home/projectDetail/components/Detail', '/home/projectDetail/components/Detail', Record<never, never>, Record<never, never>>,
+    '/home/projectDetail/components/Info': RouteRecordInfo<'/home/projectDetail/components/Info', '/home/projectDetail/components/Info', Record<never, never>, Record<never, never>>,
     '/user/': RouteRecordInfo<'/user/', '/user', Record<never, never>, Record<never, never>>,
     '/user/components/Card/': RouteRecordInfo<'/user/components/Card/', '/user/components/Card', Record<never, never>, Record<never, never>>,
     '/user/components/Dialog/': RouteRecordInfo<'/user/components/Dialog/', '/user/components/Dialog', Record<never, never>, Record<never, never>>,
@@ -42,6 +46,22 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/home/components/Filter/index.vue': {
       routes: '/home/components/Filter/'
+      views: never
+    }
+    'src/pages/home/projectDetail/index.vue': {
+      routes: '/home/projectDetail/'
+      views: never
+    }
+    'src/pages/home/projectDetail/components/Checkout.vue': {
+      routes: '/home/projectDetail/components/Checkout'
+      views: never
+    }
+    'src/pages/home/projectDetail/components/Detail.vue': {
+      routes: '/home/projectDetail/components/Detail'
+      views: never
+    }
+    'src/pages/home/projectDetail/components/Info.vue': {
+      routes: '/home/projectDetail/components/Info'
       views: never
     }
     'src/pages/user/index.vue': {
